@@ -12,7 +12,8 @@ CreativeGen is a web application that empowers users to unleash their creativity
 
 ## Technologies Used 🚀
 
-- **Flask**: Lightweight and efficient web framework for Python, providing the backbone for CreativeGen's backend.
+- **Flask**: Lightweight and efficient web framework for Python used for CreativeGen's backend.
+- **MindsDB**: Predictive modeling for generating content
 - **OpenAI GPT-3.5**: State-of-the-art language model for natural language processing and generation.
 - **Replicate**: API platform that enables high-quality image generation from user-provided inputs.
 - **HTML/CSS/JavaScript**: Frontend development stack for building the user interface and enhancing user interaction.
