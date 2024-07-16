@@ -1,0 +1,3 @@
+mindsdb-sdk==1.0.0
+flask==2.0.1
+python==3.8.10

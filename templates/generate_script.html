@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Film Script</title>
+    <style>
+        body {
+            display: flex;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1a1a1a;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+        }
+        .sidebar a {
+            display: block;
+            color: #ff66ff;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #333333;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff66ff;
+        }
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #333333;
+            border: 2px solid #ff66ff;
+            border-radius: 10px;
+        }
+        textarea {
+            width: 90%;
+            min-height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ff66ff;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            resize: none;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff66ff;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #e600e6;
+        }
+        #generatedContent {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border: 2px solid #ff66ff;
+            border-radius: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/">Scribble to Image</a>
+        <a href="/generate-story">Generate Story</a>
+        <a href="/generate-blog">Generate Blog</a>
+        <a href="/generate-script">Generate Script</a>
+    </div>
+    <div class="main-content">
+        <h1>Generate Film Script</h1>
+        <form id="scriptForm" action="/generate-script-content" method="POST">
+            <textarea name="prompt" placeholder="Enter your script prompt here..." required></textarea><br>
+            <button type="submit">Generate Film Script</button>
+        </form>
+        <div id="generatedContent" style="display:none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('scriptForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const response = await fetch('/generate-script-content', {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                document.getElementById('generatedContent').innerText = result.script_content;
+                document.getElementById('generatedContent').style.display = 'block';
+            } else {
+                alert('Failed to generate film script. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doodle-dream!</title>
+    <style>
+        body {
+            display: flex;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1a1a1a;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar a {
+            display: block;
+            color: #ffffff;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-bottom: 10px;
+            background-color: #ff66ff;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #ffffff;
+            color: #ff66ff;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff66ff;
+        }
+        form {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #333333;
+            border: 2px solid #ff66ff;
+            border-radius: 10px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ff66ff;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            resize: none;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff66ff;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #e600e6;
+        }
+        #generatedContent {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border: 2px solid #ff66ff;
+            border-radius: 10px;
+            text-align: left;
+        }
+        canvas {
+            border: 2px solid #ff66ff;
+            margin-right: 20px;
+        }
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content-container img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ff66ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/">Scribble to Image</a>
+        <a href="/generate-story">Generate Story</a>
+        <a href="/generate-blog">Generate Blog</a>
+        <a href="/generate-script">Generate Script</a>
+    </div>
+    <div class="main-content">
+        <h1>Doodle-dream: Turn your scribbles into art!</h1>
+        <div class="content-container">
+            <canvas id="scribbleCanvas" width="400" height="300"></canvas>
+            <div id="generatedImageContainer">
+            </div>
+        </div>
+        <form action="/generate" method="POST">
+            <textarea name="prompt" placeholder="Enter your prompt here..." required></textarea><br>
+            <input type="hidden" name="scribbleData" id="scribbleData">
+            <button type="submit">Generate Image</button>
+        </form>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('scribbleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDrawing) {
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.strokeStyle = '#ff66ff';
+                ctx.stroke();
+                [lastX, lastY] = [e.offsetX, e.offsetY];
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            isDrawing = false;
+        });
+
+        canvas.addEventListener('mouseout', () => {
+            isDrawing = false;
+        });
+
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('scribbleData').value = canvas.toDataURL();
+            e.target.submit();
+        });
+    </script>
+</body>
+</html>

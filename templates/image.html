@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scribbles to Image and Content Generation Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #ff66ff;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border: 2px solid #ff66ff;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        a {
+            color: #ff66ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scribbles to Image and Content Generation Result</h1>
+    <h2>Prompt:</h2>
+    <p>{{ prompt }}</p>
+    
+    <h2>Original Scribble:</h2>
+    <img src="{{ scribble_data_url }}" alt="Original Scribble">
+    
+    <h2>Generated Image:</h2>
+    <img src="{{ image_url }}" alt="Generated Image">
+
+    <h2>Generated Content:</h2>
+    <p>{{ generated_content }}</p>
+
+    <p><a href="/">Back to Scribbles to Image and Content Generation</a></p>
+</body>
+</html>
