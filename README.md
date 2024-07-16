@@ -20,7 +20,11 @@ CreativeGen is a web application that empowers users to unleash their creativity
 
 ## ScreenShots! 
 
-## Demo Video: 
+![image](https://github.com/user-attachments/assets/dfb80d27-3cb0-4b4f-ae1d-764336d307c4)
+![image](https://github.com/user-attachments/assets/6e2ee5c7-ac91-4c63-81f5-d7ba1ceeef05)
+![image](https://github.com/user-attachments/assets/85f2043c-ed57-40c8-8bb8-3eb9d07f3a96)
+
+**< Content generation screenshots incoming >**
 
 ## Installation 🛠️
 
